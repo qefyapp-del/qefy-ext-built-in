@@ -1,0 +1,494 @@
+{
+  "appName": {
+    "message": "QEFY Queue",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Login, sync user queue to Core App, and show compiled queue.",
+    "description": "The description of the application"
+  },
+  "appTitle": {
+    "message": "QEFY",
+    "description": "The title of the application"
+  },
+  "loginTitle": {
+    "message": "QEFY – Login",
+    "description": "Login page title"
+  },
+  "addVideoTitle": {
+    "message": "Add Video",
+    "description": "Add video page title"
+  },
+  "selectPlaylist": {
+    "message": "Select Playlist",
+    "description": "Select playlist dropdown header"
+  },
+  "addVideo": {
+    "message": "Add video",
+    "description": "Add video button tooltip"
+  },
+  "config": {
+    "message": "Config",
+    "description": "Config button tooltip"
+  },
+  "folder": {
+    "message": "Folder",
+    "description": "Folder section title"
+  },
+  "playNow": {
+    "message": "Play Now",
+    "description": "Play now button"
+  },
+  "manageQueue": {
+    "message": "Manage queue",
+    "description": "Manage queue text link"
+  },
+  "manageQueues": {
+    "message": "📋 Manage Queues",
+    "description": "Manage queues button"
+  },
+  "manageQueuesTooltip": {
+    "message": "Manage Queues",
+    "description": "Manage queues button tooltip"
+  },
+  "back10s": {
+    "message": "Back 10s",
+    "description": "Back 10 seconds button tooltip"
+  },
+  "playPause": {
+    "message": "Play/Pause",
+    "description": "Play/Pause button tooltip"
+  },
+  "forward30s": {
+    "message": "Forward 30s",
+    "description": "Forward 30 seconds button tooltip"
+  },
+  "markDoneNext": {
+    "message": "Mark as done and go next",
+    "description": "Mark as done and go next button tooltip"
+  },
+  "notInQueue": {
+    "message": "This video is not on your queue",
+    "description": "Warning when video is not in queue"
+  },
+  "upNext": {
+    "message": "Up Next",
+    "description": "Up next section title"
+  },
+  "close": {
+    "message": "Close",
+    "description": "Close button tooltip"
+  },
+  "addVideoToFolder": {
+    "message": "Add the video to",
+    "description": "Add video to folder text"
+  },
+  "selectFolder": {
+    "message": "Select Folder",
+    "description": "Select folder dropdown header"
+  },
+  "enterVideoUrl": {
+    "message": "Enter video URL...",
+    "description": "Video URL input placeholder"
+  },
+  "pasteFromClipboard": {
+    "message": "📋 Paste from Clipboard",
+    "description": "Paste from clipboard button"
+  },
+  "currentTab": {
+    "message": "🌐 Current Tab",
+    "description": "Current tab button"
+  },
+  "saveVideo": {
+    "message": "Save Video",
+    "description": "Save video button"
+  },
+  "email": {
+    "message": "Email",
+    "description": "Email input placeholder"
+  },
+  "password": {
+    "message": "Password",
+    "description": "Password input placeholder"
+  },
+  "signIn": {
+    "message": "Sign In",
+    "description": "Sign in button"
+  },
+  "signOut": {
+    "message": "Sign Out",
+    "description": "Sign out button"
+  },
+  "loginSubtitle": {
+    "message": "Welcome back! Please sign in to continue",
+    "description": "Login page subtitle"
+  },
+  "emailLabel": {
+    "message": "Email",
+    "description": "Email input label"
+  },
+  "passwordLabel": {
+    "message": "Password",
+    "description": "Password input label"
+  },
+  "accountSettings": {
+    "message": "Account Settings",
+    "description": "Account settings section title"
+  },
+  "accountActions": {
+    "message": "Account Actions",
+    "description": "Account actions section title"
+  },
+  "logoutDescription": {
+    "message": "Sign out from your QEFY account",
+    "description": "Logout button description"
+  },
+  "confirmSignOut": {
+    "message": "Are you sure you want to sign out?",
+    "description": "Sign out confirmation message"
+  },
+  "signOutError": {
+    "message": "Error signing out. Please try again.",
+    "description": "Error message when sign out fails"
+  },
+  "queueEnded": {
+    "message": "Queue ended",
+    "description": "Message when queue is finished"
+  },
+  "loading": {
+    "message": "Loading...",
+    "description": "Loading message"
+  },
+  "error": {
+    "message": "Error",
+    "description": "Error message"
+  },
+  "success": {
+    "message": "Success",
+    "description": "Success message"
+  },
+  "info": {
+    "message": "Info",
+    "description": "Info message"
+  },
+  "pleaseEnterVideoUrl": {
+    "message": "Please enter a video URL",
+    "description": "Error message when no URL is provided"
+  },
+  "pleaseEnterValidUrl": {
+    "message": "Please enter a valid URL",
+    "description": "Error message when URL is invalid"
+  },
+  "videoAddedSuccessfully": {
+    "message": "Video added successfully!",
+    "description": "Success message when video is added"
+  },
+  "failedToAddVideo": {
+    "message": "Failed to add video",
+    "description": "Error message when video addition fails"
+  },
+  "clipboardNoValidUrl": {
+    "message": "Clipboard does not contain a valid URL",
+    "description": "Error message when clipboard doesn't have valid URL"
+  },
+  "failedToReadClipboard": {
+    "message": "Failed to read from clipboard",
+    "description": "Error message when clipboard read fails"
+  },
+  "currentTabNoValidUrl": {
+    "message": "Current tab does not have a valid URL",
+    "description": "Error message when current tab URL is invalid"
+  },
+  "couldNotGetCurrentTabUrl": {
+    "message": "Could not get current tab URL",
+    "description": "Error message when current tab URL cannot be retrieved"
+  },
+  "enterEmailPassword": {
+    "message": "Enter email and password to sign in.",
+    "description": "Message when credentials are required"
+  },
+  "emailPasswordRequired": {
+    "message": "Email and password are required.",
+    "description": "Error message when email or password is missing"
+  },
+  "nowPlaying": {
+    "message": "Now Playing",
+    "description": "Now playing header in floating UI"
+  },
+  "noMediaNext": {
+    "message": "No media next",
+    "description": "Message when no media is next in queue"
+  },
+  "pleaseSelectAnother": {
+    "message": "Please select another",
+    "description": "Message when queue is ended and user should select another"
+  },
+  "playlistEnded": {
+    "message": "Playlist ended - Select new playlist",
+    "description": "Message when playlist has ended"
+  },
+  "openQefy": {
+    "message": "📋 Open Qefy",
+    "description": "Button to open Qefy application"
+  },
+  "playingNow": {
+    "message": "Playing Now",
+    "description": "Header text for the floating UI showing current media"
+  },
+  "magicEmoji": {
+    "message": "✨",
+    "description": "Magic emoji button tooltip"
+  },
+  "cleanupPageTitle": {
+    "message": "QEFY - Clean up my mess",
+    "description": "Cleanup page title"
+  },
+  "cleanupTitle": {
+    "message": "Clean up my mess",
+    "description": "Cleanup page main title"
+  },
+  "cleanupDescription": {
+    "message": "This scans all your open YouTube tabs and automatically sorts the best folder in Qefy to save your video. We won't close any tabs without your confirmation.",
+    "description": "Cleanup page description"
+  },
+  "scanningTabs": {
+    "message": "Scanning YouTube tabs...",
+    "description": "Progress message when scanning tabs"
+  },
+  "saveAndCloseTabs": {
+    "message": "Save to Qefy and close tabs",
+    "description": "Button to save videos and close tabs"
+  },
+  "saveKeepTabs": {
+    "message": "Save to Qefy but keep tabs open",
+    "description": "Button to save videos but keep tabs open"
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": "Cancel button"
+  },
+  "videosReady": {
+    "message": "videos ready to save",
+    "description": "Status text for ready videos count"
+  },
+  "videosFailed": {
+    "message": "skipped",
+    "description": "Status text for failed videos count"
+  },
+  "waitingForSync": {
+    "message": "Waiting for sync confirmation...",
+    "description": "Message while waiting for sync to complete"
+  },
+  "successTitle": {
+    "message": "Successfully saved to Qefy!",
+    "description": "Success page title"
+  },
+  "successDescription": {
+    "message": "Your videos have been organized into their folders.",
+    "description": "Success page description"
+  },
+  "closeThisTab": {
+    "message": "Close this tab",
+    "description": "Button to close the cleanup tab"
+  },
+  "stopAI": {
+    "message": "Stop AI, I'll manually choose",
+    "description": "Button to stop AI processing and enable manual folder selection"
+  },
+  "magicFeaturesTitle": {
+    "message": "Magic features",
+    "description": "Magic features page title"
+  },
+  "cleanupTabsTitle": {
+    "message": "Clean up all my youtube tabs",
+    "description": "Title for cleanup tabs feature"
+  },
+  "cleanupTabsDescription": {
+    "message": "Takes all your messy YouTube tabs in Chrome and uses AI to find the best folder on QEFY. Don't worry, we will do the work first and only after your confirmation will we close your tabs",
+    "description": "Description for cleanup tabs feature"
+  },
+  "createPlaylistTitle": {
+    "message": "Create custom playlists",
+    "description": "Title for create playlist feature"
+  },
+  "createPlaylistDescription": {
+    "message": "Based on my videos on queuefy and the prompt I created a new playlist. Eg: I created a playlist for me to watch during my 50-minute lunch, I want trivia videos",
+    "description": "Description for create playlist feature"
+  },
+  "createPlaylistPageTitle": {
+    "message": "QEFY - Create Custom Playlist",
+    "description": "Create playlist page title"
+  },
+  "enterPrompt": {
+    "message": "Enter your playlist idea...",
+    "description": "Prompt input label"
+  },
+  "promptPlaceholder": {
+    "message": "Example: Create a playlist for my 50-minute lunch break with trivia videos",
+    "description": "Prompt input placeholder"
+  },
+  "generatePlaylist": {
+    "message": "Generate Playlist",
+    "description": "Generate playlist button"
+  },
+  "generatingPlaylist": {
+    "message": "Analyzing your videos with AI...",
+    "description": "Processing message"
+  },
+  "batchesProcessing": {
+    "message": "batches processing",
+    "description": "Batch processing status text"
+  },
+  "suggestedFolderName": {
+    "message": "Folder name:",
+    "description": "Folder name label"
+  },
+  "selectedVideos": {
+    "message": "Selected videos",
+    "description": "Selected videos section title"
+  },
+  "removeVideo": {
+    "message": "Remove",
+    "description": "Remove video button"
+  },
+  "createFolderButton": {
+    "message": "Create folder on QEFY",
+    "description": "Create folder button"
+  },
+  "noVideosSelected": {
+    "message": "No videos selected. Please try a different prompt.",
+    "description": "No videos error message"
+  },
+  "playlistCreatedTitle": {
+    "message": "Playlist Created!",
+    "description": "Success title"
+  },
+  "playlistCreatedDescription": {
+    "message": "Your custom playlist has been added to QEFY.",
+    "description": "Success description"
+  },
+  "configTitle": {
+    "message": "Configuration",
+    "description": "Configuration page title"
+  },
+  "specialConfigs": {
+    "message": "Special Configs",
+    "description": "Special configs section title"
+  },
+  "languageSettings": {
+    "message": "Language Settings",
+    "description": "Language settings section title"
+  },
+  "selectLanguage": {
+    "message": "Select your language",
+    "description": "Language selector label"
+  },
+  "languageDescription": {
+    "message": "Choose your preferred language for the extension interface",
+    "description": "Language selection description"
+  },
+  "languageEnglish": {
+    "message": "English",
+    "description": "English language option"
+  },
+  "languagePortuguese": {
+    "message": "Português (Brasil)",
+    "description": "Portuguese language option"
+  },
+  "languageSpanish": {
+    "message": "Español",
+    "description": "Spanish language option"
+  },
+  "autoClassifyVideos": {
+    "message": "Automatically classify youtube videos",
+    "description": "AI auto-classify feature title"
+  },
+  "aiDescription": {
+    "message": "On the right click of a youtube video thumbnail, the extension will automatically classify the video into the appropriate folder",
+    "description": "AI feature description"
+  },
+  "aiNotAvailable": {
+    "message": "AI features not available",
+    "description": "Message when AI is not available"
+  },
+  "enableChromeAI": {
+    "message": "You need to enable Google Chrome AI flag",
+    "description": "Message to enable Chrome AI"
+  },
+  "learnMore": {
+    "message": "Learn more (beta) →",
+    "description": "Learn more link text"
+  },
+  "couldNotLoadQueue": {
+    "message": "Could not load your queue. Please try again.",
+    "description": "Error when queue cannot be loaded"
+  },
+  "noYouTubeTabsFound": {
+    "message": "No YouTube tabs found",
+    "description": "Title when no YouTube tabs found"
+  },
+  "openYouTubeTabs": {
+    "message": "Open some YouTube videos and try again!",
+    "description": "Description when no YouTube tabs found"
+  },
+  "errorOccurred": {
+    "message": "An error occurred. Please try again.",
+    "description": "Generic error message"
+  },
+  "noVideosReadyToSave": {
+    "message": "No videos ready to save",
+    "description": "Error when no videos are ready to save"
+  },
+  "failedToSaveVideos": {
+    "message": "Failed to save videos. Please try again.",
+    "description": "Error when video save fails"
+  },
+  "gettingQueue": {
+    "message": "Getting your queue...",
+    "description": "Progress message when getting queue"
+  },
+  "pleaseEnterPlaylistIdea": {
+    "message": "Please enter a playlist idea",
+    "description": "Error when no playlist idea is entered"
+  },
+  "queueNotLoaded": {
+    "message": "Queue not loaded. Please ensure you are logged in and have videos in your QEFY queue.",
+    "description": "Error when queue is not loaded"
+  },
+  "pleaseEnterFolderName": {
+    "message": "Please enter a folder name",
+    "description": "Error when no folder name is entered"
+  },
+  "noVideosSelectedError": {
+    "message": "No videos selected",
+    "description": "Error when no videos are selected"
+  },
+  "failedToCreatePlaylist": {
+    "message": "Failed to create playlist",
+    "description": "Error when playlist creation fails"
+  },
+  "appearanceSettings": {
+    "message": "Appearance Settings",
+    "description": "Appearance settings section title"
+  },
+  "selectThemeMode": {
+    "message": "Select theme mode",
+    "description": "Theme mode selector label"
+  },
+  "themeModeDescription": {
+    "message": "Choose your preferred theme mode for the extension interface",
+    "description": "Theme mode selection description"
+  },
+  "themeModeSystem": {
+    "message": "System Default",
+    "description": "System default theme mode option"
+  },
+  "themeModeLight": {
+    "message": "Light Mode",
+    "description": "Light theme mode option"
+  },
+  "themeModeDark": {
+    "message": "Dark Mode",
+    "description": "Dark theme mode option"
+  }
+}

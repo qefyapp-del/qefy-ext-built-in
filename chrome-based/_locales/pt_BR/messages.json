@@ -1,0 +1,494 @@
+{
+  "appName": {
+    "message": "QEFY Queue",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Faça login, sincronize a fila do usuário com o Core App e exiba a fila compilada.",
+    "description": "The description of the application"
+  },
+  "appTitle": {
+    "message": "QEFY",
+    "description": "The title of the application"
+  },
+  "loginTitle": {
+    "message": "QEFY – Login",
+    "description": "Login page title"
+  },
+  "addVideoTitle": {
+    "message": "Adicionar Vídeo",
+    "description": "Add video page title"
+  },
+  "selectPlaylist": {
+    "message": "Selecionar Playlist",
+    "description": "Select playlist dropdown header"
+  },
+  "addVideo": {
+    "message": "Adicionar vídeo",
+    "description": "Add video button tooltip"
+  },
+  "config": {
+    "message": "Configurações",
+    "description": "Config button tooltip"
+  },
+  "folder": {
+    "message": "Pasta",
+    "description": "Folder section title"
+  },
+  "playNow": {
+    "message": "Reproduzir Agora",
+    "description": "Play now button"
+  },
+  "manageQueue": {
+    "message": "Gerenciar fila",
+    "description": "Manage queue text link"
+  },
+  "manageQueues": {
+    "message": "📋 Gerenciar Filas",
+    "description": "Manage queues button"
+  },
+  "manageQueuesTooltip": {
+    "message": "Gerenciar Filas",
+    "description": "Manage queues button tooltip"
+  },
+  "back10s": {
+    "message": "Voltar 10s",
+    "description": "Back 10 seconds button tooltip"
+  },
+  "playPause": {
+    "message": "Reproduzir/Pausar",
+    "description": "Play/Pause button tooltip"
+  },
+  "forward30s": {
+    "message": "Avançar 30s",
+    "description": "Forward 30 seconds button tooltip"
+  },
+  "markDoneNext": {
+    "message": "Marcar como concluído e ir para o próximo",
+    "description": "Mark as done and go next button tooltip"
+  },
+  "notInQueue": {
+    "message": "Este vídeo não está na sua fila",
+    "description": "Warning when video is not in queue"
+  },
+  "upNext": {
+    "message": "Próximo",
+    "description": "Up next section title"
+  },
+  "close": {
+    "message": "Fechar",
+    "description": "Close button tooltip"
+  },
+  "addVideoToFolder": {
+    "message": "Adicionar o vídeo à",
+    "description": "Add video to folder text"
+  },
+  "selectFolder": {
+    "message": "Selecionar Pasta",
+    "description": "Select folder dropdown header"
+  },
+  "enterVideoUrl": {
+    "message": "Digite a URL do vídeo...",
+    "description": "Video URL input placeholder"
+  },
+  "pasteFromClipboard": {
+    "message": "📋 Colar da Área de Transferência",
+    "description": "Paste from clipboard button"
+  },
+  "currentTab": {
+    "message": "🌐 Aba Atual",
+    "description": "Current tab button"
+  },
+  "saveVideo": {
+    "message": "Salvar Vídeo",
+    "description": "Save video button"
+  },
+  "email": {
+    "message": "Email",
+    "description": "Email input placeholder"
+  },
+  "password": {
+    "message": "Senha",
+    "description": "Password input placeholder"
+  },
+  "signIn": {
+    "message": "Entrar",
+    "description": "Sign in button"
+  },
+  "signOut": {
+    "message": "Sair",
+    "description": "Sign out button"
+  },
+  "loginSubtitle": {
+    "message": "Bem-vindo de volta! Por favor, faça login para continuar",
+    "description": "Login page subtitle"
+  },
+  "emailLabel": {
+    "message": "Email",
+    "description": "Email input label"
+  },
+  "passwordLabel": {
+    "message": "Senha",
+    "description": "Password input label"
+  },
+  "accountSettings": {
+    "message": "Configurações da Conta",
+    "description": "Account settings section title"
+  },
+  "accountActions": {
+    "message": "Ações da Conta",
+    "description": "Account actions section title"
+  },
+  "logoutDescription": {
+    "message": "Sair da sua conta QEFY",
+    "description": "Logout button description"
+  },
+  "confirmSignOut": {
+    "message": "Tem certeza de que deseja sair?",
+    "description": "Sign out confirmation message"
+  },
+  "signOutError": {
+    "message": "Erro ao sair. Por favor, tente novamente.",
+    "description": "Error message when sign out fails"
+  },
+  "queueEnded": {
+    "message": "Fila finalizada",
+    "description": "Message when queue is finished"
+  },
+  "loading": {
+    "message": "Carregando...",
+    "description": "Loading message"
+  },
+  "error": {
+    "message": "Erro",
+    "description": "Error message"
+  },
+  "success": {
+    "message": "Sucesso",
+    "description": "Success message"
+  },
+  "info": {
+    "message": "Informação",
+    "description": "Info message"
+  },
+  "pleaseEnterVideoUrl": {
+    "message": "Por favor, digite uma URL de vídeo",
+    "description": "Error message when no URL is provided"
+  },
+  "pleaseEnterValidUrl": {
+    "message": "Por favor, digite uma URL válida",
+    "description": "Error message when URL is invalid"
+  },
+  "videoAddedSuccessfully": {
+    "message": "Vídeo adicionado com sucesso!",
+    "description": "Success message when video is added"
+  },
+  "failedToAddVideo": {
+    "message": "Falha ao adicionar vídeo",
+    "description": "Error message when video addition fails"
+  },
+  "clipboardNoValidUrl": {
+    "message": "A área de transferência não contém uma URL válida",
+    "description": "Error message when clipboard doesn't have valid URL"
+  },
+  "failedToReadClipboard": {
+    "message": "Falha ao ler da área de transferência",
+    "description": "Error message when clipboard read fails"
+  },
+  "currentTabNoValidUrl": {
+    "message": "A aba atual não tem uma URL válida",
+    "description": "Error message when current tab URL is invalid"
+  },
+  "couldNotGetCurrentTabUrl": {
+    "message": "Não foi possível obter a URL da aba atual",
+    "description": "Error message when current tab URL cannot be retrieved"
+  },
+  "enterEmailPassword": {
+    "message": "Digite o email e senha para entrar.",
+    "description": "Message when credentials are required"
+  },
+  "emailPasswordRequired": {
+    "message": "Email e senha são obrigatórios.",
+    "description": "Error message when email or password is missing"
+  },
+  "nowPlaying": {
+    "message": "Reproduzindo Agora",
+    "description": "Now playing header in floating UI"
+  },
+  "noMediaNext": {
+    "message": "Nenhuma mídia próxima",
+    "description": "Message when no media is next in queue"
+  },
+  "pleaseSelectAnother": {
+    "message": "Por favor, selecione outra",
+    "description": "Message when queue is ended and user should select another"
+  },
+  "playlistEnded": {
+    "message": "Playlist finalizada - Selecione nova playlist",
+    "description": "Message when playlist has ended"
+  },
+  "openQefy": {
+    "message": "📋 Abrir Qefy",
+    "description": "Button to open Qefy application"
+  },
+  "playingNow": {
+    "message": "Reproduzindo Agora",
+    "description": "Header text for the floating UI showing current media"
+  },
+  "magicEmoji": {
+    "message": "✨",
+    "description": "Magic emoji button tooltip"
+  },
+  "cleanupPageTitle": {
+    "message": "QEFY - Limpar minha bagunça",
+    "description": "Cleanup page title"
+  },
+  "cleanupTitle": {
+    "message": "Limpar minha bagunça",
+    "description": "Cleanup page main title"
+  },
+  "cleanupDescription": {
+    "message": "Isso escaneia todas as suas abas abertas do YouTube e classifica automaticamente na melhor pasta do Qefy para salvar seu vídeo. Não fecharemos nenhuma aba sem sua confirmação.",
+    "description": "Cleanup page description"
+  },
+  "scanningTabs": {
+    "message": "Escaneando abas do YouTube...",
+    "description": "Progress message when scanning tabs"
+  },
+  "saveAndCloseTabs": {
+    "message": "Salvar no Qefy e fechar abas",
+    "description": "Button to save videos and close tabs"
+  },
+  "saveKeepTabs": {
+    "message": "Salvar no Qefy mas manter abas abertas",
+    "description": "Button to save videos but keep tabs open"
+  },
+  "cancel": {
+    "message": "Cancelar",
+    "description": "Cancel button"
+  },
+  "videosReady": {
+    "message": "vídeos prontos para salvar",
+    "description": "Status text for ready videos count"
+  },
+  "videosFailed": {
+    "message": "ignorados",
+    "description": "Status text for failed videos count"
+  },
+  "waitingForSync": {
+    "message": "Aguardando confirmação de sincronização...",
+    "description": "Message while waiting for sync to complete"
+  },
+  "successTitle": {
+    "message": "Salvo com sucesso no Qefy!",
+    "description": "Success page title"
+  },
+  "successDescription": {
+    "message": "Seus vídeos foram organizados em suas pastas.",
+    "description": "Success page description"
+  },
+  "closeThisTab": {
+    "message": "Fechar esta aba",
+    "description": "Button to close the cleanup tab"
+  },
+  "stopAI": {
+    "message": "Parar IA, vou escolher manualmente",
+    "description": "Button to stop AI processing and enable manual folder selection"
+  },
+  "magicFeaturesTitle": {
+    "message": "Funcionalidades mágicas",
+    "description": "Magic features page title"
+  },
+  "cleanupTabsTitle": {
+    "message": "Limpar todas as minhas abas do YouTube",
+    "description": "Title for cleanup tabs feature"
+  },
+  "cleanupTabsDescription": {
+    "message": "Pega todas as suas abas bagunçadas do YouTube no Chrome e usa IA para encontrar a melhor pasta no QEFY. Não se preocupe, faremos o trabalho primeiro e só depois da sua confirmação fecharemos suas abas",
+    "description": "Description for cleanup tabs feature"
+  },
+  "createPlaylistTitle": {
+    "message": "Criar playlists personalizadas",
+    "description": "Title for create playlist feature"
+  },
+  "createPlaylistDescription": {
+    "message": "Com base nos meus vídeos no queuefy e no prompt, criei uma nova playlist. Ex: Criei uma playlist para assistir durante meu almoço de 50 minutos, quero vídeos de curiosidades",
+    "description": "Description for create playlist feature"
+  },
+  "createPlaylistPageTitle": {
+    "message": "QEFY - Criar Playlist Personalizada",
+    "description": "Create playlist page title"
+  },
+  "enterPrompt": {
+    "message": "Digite sua ideia de playlist...",
+    "description": "Prompt input label"
+  },
+  "promptPlaceholder": {
+    "message": "Exemplo: Criar uma playlist para meu intervalo de almoço de 50 minutos com vídeos de curiosidades",
+    "description": "Prompt input placeholder"
+  },
+  "generatePlaylist": {
+    "message": "Gerar Playlist",
+    "description": "Generate playlist button"
+  },
+  "generatingPlaylist": {
+    "message": "Analisando seus vídeos com IA...",
+    "description": "Processing message"
+  },
+  "batchesProcessing": {
+    "message": "lotes em processamento",
+    "description": "Batch processing status text"
+  },
+  "suggestedFolderName": {
+    "message": "Nome da pasta:",
+    "description": "Folder name label"
+  },
+  "selectedVideos": {
+    "message": "Vídeos selecionados",
+    "description": "Selected videos section title"
+  },
+  "removeVideo": {
+    "message": "Remover",
+    "description": "Remove video button"
+  },
+  "createFolderButton": {
+    "message": "Criar pasta no QEFY",
+    "description": "Create folder button"
+  },
+  "noVideosSelected": {
+    "message": "Nenhum vídeo selecionado. Por favor, tente um prompt diferente.",
+    "description": "No videos error message"
+  },
+  "playlistCreatedTitle": {
+    "message": "Playlist Criada!",
+    "description": "Success title"
+  },
+  "playlistCreatedDescription": {
+    "message": "Sua playlist personalizada foi adicionada ao QEFY.",
+    "description": "Success description"
+  },
+  "configTitle": {
+    "message": "Configuração",
+    "description": "Configuration page title"
+  },
+  "specialConfigs": {
+    "message": "Configurações Especiais",
+    "description": "Special configs section title"
+  },
+  "languageSettings": {
+    "message": "Configurações de Idioma",
+    "description": "Language settings section title"
+  },
+  "selectLanguage": {
+    "message": "Selecione seu idioma",
+    "description": "Language selector label"
+  },
+  "languageDescription": {
+    "message": "Escolha seu idioma preferido para a interface da extensão",
+    "description": "Language selection description"
+  },
+  "languageEnglish": {
+    "message": "English",
+    "description": "English language option"
+  },
+  "languagePortuguese": {
+    "message": "Português (Brasil)",
+    "description": "Portuguese language option"
+  },
+  "languageSpanish": {
+    "message": "Español",
+    "description": "Spanish language option"
+  },
+  "autoClassifyVideos": {
+    "message": "Classificar automaticamente vídeos do YouTube",
+    "description": "AI auto-classify feature title"
+  },
+  "aiDescription": {
+    "message": "Ao clicar com o botão direito em uma miniatura de vídeo do YouTube, a extensão classificará automaticamente o vídeo na pasta apropriada",
+    "description": "AI feature description"
+  },
+  "aiNotAvailable": {
+    "message": "Recursos de IA não disponíveis",
+    "description": "Message when AI is not available"
+  },
+  "enableChromeAI": {
+    "message": "Você precisa ativar a flag de IA do Google Chrome",
+    "description": "Message to enable Chrome AI"
+  },
+  "learnMore": {
+    "message": "Saiba mais (beta) →",
+    "description": "Learn more link text"
+  },
+  "couldNotLoadQueue": {
+    "message": "Não foi possível carregar sua fila. Por favor, tente novamente.",
+    "description": "Error when queue cannot be loaded"
+  },
+  "noYouTubeTabsFound": {
+    "message": "Nenhuma aba do YouTube encontrada",
+    "description": "Title when no YouTube tabs found"
+  },
+  "openYouTubeTabs": {
+    "message": "Abra alguns vídeos do YouTube e tente novamente!",
+    "description": "Description when no YouTube tabs found"
+  },
+  "errorOccurred": {
+    "message": "Ocorreu um erro. Por favor, tente novamente.",
+    "description": "Generic error message"
+  },
+  "noVideosReadyToSave": {
+    "message": "Nenhum vídeo pronto para salvar",
+    "description": "Error when no videos are ready to save"
+  },
+  "failedToSaveVideos": {
+    "message": "Falha ao salvar vídeos. Por favor, tente novamente.",
+    "description": "Error when video save fails"
+  },
+  "gettingQueue": {
+    "message": "Obtendo sua fila...",
+    "description": "Progress message when getting queue"
+  },
+  "pleaseEnterPlaylistIdea": {
+    "message": "Por favor, digite uma ideia de playlist",
+    "description": "Error when no playlist idea is entered"
+  },
+  "queueNotLoaded": {
+    "message": "Fila não carregada. Por favor, certifique-se de que você está logado e tem vídeos na sua fila QEFY.",
+    "description": "Error when queue is not loaded"
+  },
+  "pleaseEnterFolderName": {
+    "message": "Por favor, digite um nome de pasta",
+    "description": "Error when no folder name is entered"
+  },
+  "noVideosSelectedError": {
+    "message": "Nenhum vídeo selecionado",
+    "description": "Error when no videos are selected"
+  },
+  "failedToCreatePlaylist": {
+    "message": "Falha ao criar playlist",
+    "description": "Error when playlist creation fails"
+  },
+  "appearanceSettings": {
+    "message": "Configurações de Aparência",
+    "description": "Appearance settings section title"
+  },
+  "selectThemeMode": {
+    "message": "Selecione o modo do tema",
+    "description": "Theme mode selector label"
+  },
+  "themeModeDescription": {
+    "message": "Escolha seu modo de tema preferido para a interface da extensão",
+    "description": "Theme mode selection description"
+  },
+  "themeModeSystem": {
+    "message": "Padrão do Sistema",
+    "description": "System default theme mode option"
+  },
+  "themeModeLight": {
+    "message": "Modo Claro",
+    "description": "Light theme mode option"
+  },
+  "themeModeDark": {
+    "message": "Modo Escuro",
+    "description": "Dark theme mode option"
+  }
+}
