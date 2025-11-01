@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title data-i18n-title="appName">QEFY Queue</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="tailwind_cdn_4.js"></script>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="material-icons.css" />
+    <script src="i18n.js"></script>
+  </head>
+  <body class="bg-surface text-on-surface">
+    <div id="app" class="w-[416px] max-h-96 p-3">
+      <div class="header flex items-center justify-between gap-2">
+        <div class="header-title-section flex flex-col gap-0.5">
+          <div class="title-row flex items-center gap-0">
+            <h1 data-i18n="appTitle" class="text-base font-semibold m-0">QEFY</h1>
+            <div class="header-playlist-container relative ml-2">
+              <div id="headerPlaylistName" class="muted clickable-playlist cursor-pointer px-2 py-1 rounded transition-colors duration-200 hover:bg-surface-container" style="color: var(--color-on-surface-variant);">—</div>
+              <div id="headerPlaylistDropdown" class="playlist-dropdown hidden absolute top-full left-0 bg-surface border border-outline rounded-md shadow-lg z-50 min-w-48 max-h-48 overflow-y-auto">
+                <div class="dropdown-header px-3 py-2 bg-surface-container border-b border-outline font-semibold text-xs" data-i18n="selectPlaylist" style="color: var(--color-on-surface-variant);">Select Playlist</div>
+                <div id="headerPlaylistOptions" class="dropdown-options"></div>
+              </div>
+            </div>
+          </div>
+          <div id="manageQueueText" class="manage-queue-text cursor-pointer text-xs text-primary hover:text-primary-fixed hover:underline transition-colors duration-200 mt-0.5" data-i18n="manageQueue">Manage queue</div>
+        </div>
+        <div class="head-actions flex gap-2 ml-auto mr-2">
+          <button id="addVideoBtn" data-i18n="addVideo" title="Add video" class="header-action-btn w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
+            <span class="material-symbols-outlined text-lg">add</span>
+          </button>
+          <button id="magicEmojiBtn" data-i18n="magicEmoji" title="Clean up my mess" class="header-action-btn w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
+            <span class="material-symbols-outlined text-lg">auto_fix_high</span>
+          </button>
+          <button id="configBtn" data-i18n="config" title="Config" class="header-action-btn w-10 h-10 rounded-full flex items-center justify-center cursor-pointer">
+            <span class="material-symbols-outlined text-lg">settings</span>
+          </button>
+        </div>
+      </div>
+      <div class="section mt-3" id="folderSection">
+        <h2 data-i18n="folder" class="text-sm font-semibold mb-2">Folder</h2>
+        <div class="row flex gap-2">
+          <select id="folderSelect" class="flex-1 px-3 py-2 rounded-lg border border-outline bg-surface text-on-surface focus:border-primary focus:outline-none transition-colors duration-200"></select>
+          <button id="playNowBtn" class="header-action-btn px-4 py-2 rounded-lg font-semibold flex items-center justify-center gap-2" data-i18n="playNow">
+            <span class="material-symbols-outlined text-sm">play_arrow</span>
+            <span>Play Now</span>
+          </button>
+        </div>
+      </div>
+      <div class="section mt-3 hidden" id="controllerSection">
+        <!-- Now Playing Card -->
+        <div class="bg-surface-container rounded-lg p-3 mb-3 border border-outline-variant">
+          <div class="mediaRow">
+            <img id="mediaThumb" alt="thumb" class="w-24 h-18 object-cover rounded-lg bg-surface-container-high shadow-sm" />
+            <div class="titleRow">
+              <div id="mediaTitle" class="font-semibold text-sm text-on-surface overflow-hidden line-clamp-2">—</div>
+            </div>
+            <div class="mediaStatusRow" style="margin: 0; padding: 0;">
+              <div id="mediaStatus" class="whitespace-nowrap bg-surface-container rounded text-right w-20 ml-auto font-mono text-xs" style="color: var(--color-on-surface-variant); margin: 0; padding: 0;">--:-- / --:--</div>
+            </div>
+            <div class="seekRow">
+              <input id="seekSlider" type="range" min="0" max="0" value="0" step="0.01" class="w-full block p-0 accent-primary" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Media Controls -->
+        <div class="bg-surface-container rounded-lg p-3 mb-3 border border-outline-variant">
+          <div class="controlsRow">
+            <div class="controlsLeft flex gap-2 items-center">
+              <button id="seekBackBtn" data-i18n="back10s" title="Back 10s" class="media-control-btn px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">replay_10</span>
+            
+              </button>
+              <button id="togglePlayBtn" data-i18n="playPause" title="Play/Pause" class="media-control-btn primary px-4 py-2 rounded-lg font-semibold text-sm flex items-center">
+                <span class="material-symbols-outlined text-lg">play_arrow</span>
+              </button>
+              <button id="seekFwdBtn" data-i18n="forward30s" title="Forward 30s" class="media-control-btn px-3 py-2 rounded-lg text-xs font-medium flex items-center gap-1">
+              
+                <span class="material-symbols-outlined text-sm">forward_30</span>
+              </button>
+            </div>
+            <div class="controlsRight flex gap-2 items-center justify-end">
+              <select id="speedSelect" class="w-auto px-3 py-2 rounded-lg border border-outline bg-surface text-on-surface text-xs focus:border-primary focus:outline-none transition-colors duration-200">
+                <option>0.5x</option>
+                <option>0.75x</option>
+                <option selected>1x</option>
+                <option>1.25x</option>
+                <option>1.5x</option>
+                <option>1.75x</option>
+                <option>2x</option>
+              </select>
+              <button id="markDoneNextBtn" data-i18n="markDoneNext" title="Mark as done and go next" class="media-control-btn tertiary px-3 py-2 rounded-lg font-semibold text-xs flex items-center gap-1">
+                <span class="material-symbols-outlined text-sm">skip_next</span>
+                <span>Done</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Status Messages -->
+        <div id="notInQueue" class="warn hidden mt-3 text-xs text-error bg-error-container border border-error px-3 py-2 rounded-lg" data-i18n="notInQueue">This video is not on your queue</div>
+        
+        <!-- Up Next Section -->
+        <div id="upNext" class="upnext hidden bg-surface-container rounded-lg p-3 border border-outline-variant">
+          <h3 data-i18n="upNext" class="text-sm font-semibold mb-3 col-span-2 text-on-surface">Up Next</h3>
+          <div class="tile bg-surface rounded-lg p-2 border border-outline-variant hover:bg-surface-container transition-colors duration-200">
+            <div class="thumb gray w-14 h-8 object-cover rounded bg-surface-container-high" id="up1Thumb"></div>
+            <div class="title text-xs leading-tight overflow-hidden line-clamp-2 text-on-surface" id="up1Title">—</div>
+          </div>
+          <div class="tile bg-surface rounded-lg p-2 border border-outline-variant hover:bg-surface-container transition-colors duration-200">
+            <div class="thumb gray w-14 h-8 object-cover rounded bg-surface-container-high" id="up2Thumb"></div>
+            <div class="title text-xs leading-tight overflow-hidden line-clamp-2 text-on-surface" id="up2Title">—</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Video Page -->
+    <div id="addVideoPage" class="hidden w-[416px] max-h-96 p-3">
+      <div class="header flex items-center justify-between">
+        <h1 data-i18n="addVideoTitle" class="text-base font-semibold m-0">Add Video</h1>
+        <button id="closeAddVideoBtn" data-i18n="close" title="Close" class="ml-auto w-8 h-8 rounded-full flex items-center justify-center header-action-btn">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+      
+      <div class="section mt-3">
+        <div class="folder-selector-section relative mb-4">
+          <div id="addVideoFolderText" class="folder-text text-sm mb-2" data-i18n="addVideoToFolder">Add the video to <span id="selectedFolderName" class="clickable-folder text-blue-600 cursor-pointer underline hover:text-blue-800 transition-colors duration-200">recently_added</span></div>
+          <div id="addVideoFolderDropdown" class="folder-dropdown hidden absolute top-full left-0 bg-surface border border-outline rounded-md shadow-lg z-50 min-w-48 max-h-48 overflow-y-auto">
+            <div class="dropdown-header px-3 py-2 bg-surface-container border-b border-outline font-semibold text-xs" data-i18n="selectFolder" style="color: var(--color-on-surface-variant);">Select Folder</div>
+            <div id="addVideoFolderOptions" class="dropdown-options"></div>
+          </div>
+        </div>
+        
+        <div class="input-section">
+          <input id="videoUrlInput" type="url" data-i18n="enterVideoUrl" placeholder="Enter video URL..." class="w-full p-3 text-sm border-2 border-outline bg-surface text-on-surface rounded-lg mb-3 focus:border-primary focus:outline-none transition-colors duration-200" />
+          <div class="input-actions flex gap-2 justify-center">
+            <button id="pasteFromClipboardBtn" data-i18n="pasteFromClipboard" class="header-action-btn px-4 py-2 rounded-full flex items-center justify-center gap-2" title="Paste from Clipboard">
+              <span class="material-symbols-outlined text-sm">content_paste</span>
+              <span class="text-sm">Paste from Clipboard</span>
+            </button>
+            <button id="getCurrentTabBtn" data-i18n="currentTab" class="header-action-btn px-4 py-2 rounded-full flex items-center justify-center gap-2" title="Current Tab">
+              <span class="material-symbols-outlined text-sm">language</span>
+              <span class="text-sm">Current Tab</span>
+            </button>
+          </div>
+        </div>
+        
+        <div class="save-section mt-4">
+          <button id="saveVideoBtn" data-i18n="saveVideo" class="w-full p-3 bg-primary hover:bg-primary-fixed text-on-primary border-none rounded-lg text-sm font-semibold cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-sm">save</span>
+            <span>Save Video</span>
+          </button>
+        </div>
+        
+        <div id="addVideoStatus" class="status-message hidden mt-3 p-2 rounded-md text-sm"></div>
+      </div>
+    </div>
+
+    <!-- Config Page -->
+    <div id="configPage" class="hidden w-[416px] max-h-96 p-3">
+      <div class="header flex items-center justify-between">
+        <h1 data-i18n="configTitle" class="text-base font-semibold m-0">Configuration</h1>
+        <button id="closeConfigBtn" data-i18n="close" title="Close" class="ml-auto w-8 h-8 rounded-full flex items-center justify-center header-action-btn">
+          <span class="material-symbols-outlined text-sm">close</span>
+        </button>
+      </div>
+      
+      <div class="section mt-3">
+        <h2 data-i18n="appearanceSettings" class="text-sm font-semibold mb-3">Appearance Settings</h2>
+        
+        <!-- Theme Mode Selector Section -->
+        <div id="themeModeSection" class="theme-mode-section mb-5">
+          <div class="config-item p-3 border border-outline rounded-lg mb-3 hover:bg-surface-container transition-colors duration-200">
+            <div class="config-info">
+              <div class="config-title font-semibold mb-1" data-i18n="selectThemeMode">Select theme mode</div>
+              <div class="config-description text-xs mb-3" data-i18n="themeModeDescription" style="color: var(--color-on-surface-variant);">Choose your preferred theme mode for the extension interface</div>
+              <select id="themeModeSelect" class="w-full p-2 text-sm border border-outline bg-surface text-on-surface rounded-md cursor-pointer focus:border-primary focus:outline-none transition-colors duration-200">
+                <option value="system" data-i18n="themeModeSystem">System Default</option>
+                <option value="light" data-i18n="themeModeLight">Light Mode</option>
+                <option value="dark" data-i18n="themeModeDark">Dark Mode</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <h2 data-i18n="languageSettings" class="text-sm font-semibold mb-3">Language Settings</h2>
+        
+        <!-- Language Selector Section -->
+        <div id="languageSection" class="language-section mb-5">
+          <div class="config-item p-3 border border-outline rounded-lg mb-3 hover:bg-surface-container transition-colors duration-200">
+            <div class="config-info">
+              <div class="config-title font-semibold mb-1" data-i18n="selectLanguage">Select your language</div>
+              <div class="config-description text-xs mb-3" data-i18n="languageDescription" style="color: var(--color-on-surface-variant);">Choose your preferred language for the extension interface</div>
+              <select id="languageSelect" class="w-full p-2 text-sm border border-outline bg-surface text-on-surface rounded-md cursor-pointer focus:border-primary focus:outline-none transition-colors duration-200">
+                <option value="en" data-i18n="languageEnglish">English</option>
+                <option value="pt_BR" data-i18n="languagePortuguese">Português (Brasil)</option>
+                <option value="es" data-i18n="languageSpanish">Español</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <h2 data-i18n="accountSettings" class="text-sm font-semibold mb-3">Account Settings</h2>
+        
+        <!-- Logout Section -->
+        <div id="logoutSection" class="logout-section mb-5">
+          <div class="config-item p-3 border border-outline rounded-lg mb-3">
+            <div class="config-info">
+              <div class="config-title font-semibold mb-1" data-i18n="accountActions">Account Actions</div>
+              <div class="config-description text-xs mb-3" style="color: var(--color-on-surface-variant);" data-i18n="logoutDescription">Sign out from your QEFY account</div>
+              <button id="logoutBtn" class="w-full p-3 bg-error hover:bg-error-fixed text-on-error border-none rounded-lg text-sm font-semibold cursor-pointer transition-colors duration-200 flex items-center justify-center gap-2" data-i18n="signOut">
+                <span class="material-symbols-outlined text-sm">logout</span>
+                <span>Sign Out</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <h2 data-i18n="specialConfigs" class="text-sm font-semibold mb-3">Special Configs</h2>
+        
+        <!-- Device ID Section -->
+        <div id="deviceIdSection" class="device-id-section mb-5">
+          <div class="config-item p-3 border border-gray-300 rounded-lg mb-3 hover:bg-gray-50 transition-colors duration-200">
+            <div class="config-info">
+              <div class="config-title font-semibold mb-2">Device ID</div>
+              <div id="deviceIdDisplay" class="font-mono text-sm text-gray-800 mb-1">Loading...</div>
+              <div id="deviceIdInfo" class="text-xs text-gray-600"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Configuration Section -->
+        <div id="aiConfigSection" class="ai-config-section mb-5">
+          <div class="config-item flex items-center justify-between p-3 border border-gray-300 rounded-lg mb-3 hover:bg-gray-50 transition-colors duration-200">
+            <div class="config-info flex-1">
+              <div class="config-title font-semibold mb-1" data-i18n="autoClassifyVideos">Automatically classify youtube videos</div>
+              <div class="config-description text-xs text-gray-600" data-i18n="aiDescription">On the right click of a youtube video thumbnail, the extension will automatically classify the video into the appropriate folder</div>
+            </div>
+            <div id="aiToggleContainer" class="toggle-container ml-3">
+              <!-- Toggle will be inserted here -->
+            </div>
+          </div>
+          
+          <!-- AI Status Messages -->
+          <div id="aiStatusMessage" class="status-message hidden p-2 rounded-md mt-2 text-xs"></div>
+          
+          <!-- AI Not Available Message -->
+          <div id="aiNotAvailableMessage" class="ai-not-available hidden p-3 bg-surface-container border border-outline rounded-md mt-2">
+            <div class="font-semibold mb-1" data-i18n="aiNotAvailable" style="color: var(--color-on-surface);">AI features not available</div>
+            <div class="text-xs mb-2" data-i18n="enableChromeAI" style="color: var(--color-on-surface-variant);">You need to enable Google Chrome AI flag</div>
+            <a href="https://developer.chrome.com/docs/ai/built-in" target="_blank" class="text-xs transition-colors duration-200" data-i18n="learnMore" style="color: var(--color-primary);">Learn more (beta) →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script type="module" src="popup.js"></script>
+  </body>
+  </html>
+
+

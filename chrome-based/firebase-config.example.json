@@ -1,0 +1,12 @@
+{
+  "firebase": {
+    "apiKey": "YOUR_API_KEY",
+    "authDomain": "qefy-playlist.firebaseapp.com",
+    "projectId": "qefy-playlist",
+    "storageBucket": "qefy-playlist.appspot.com",
+    "messagingSenderId": "SENDER_ID",
+    "appId": "APP_ID"
+  },
+  "apiBaseUrl": "https://us-central1-qefy-playlist.cloudfunctions.net"
+}
+

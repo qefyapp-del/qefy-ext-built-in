@@ -1,0 +1,475 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  min-width: 600px;
+  min-height: 400px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-on-surface);
+}
+
+/* Features Grid */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  flex: 1;
+}
+
+/* Feature Card */
+.feature-card {
+  background: var(--color-surface-container);
+  border: 2px solid var(--color-outline-variant);
+  border-radius: 16px;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.feature-card:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Image Container */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background: var(--color-surface-container-high);
+  overflow: hidden;
+}
+
+/* Messy Tabs Preview Image */
+.messy-tabs-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .messy-tabs-preview {
+  opacity: 0;
+}
+
+.messy-tabs-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Card Header Image (for other cards) */
+.card-header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* YouTube Icons Animation Container */
+.yt-icons-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .yt-icons-container {
+  opacity: 1;
+}
+
+/* Card Content */
+.card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.feature-card h2,
+.feature-card p {
+  position: relative;
+  z-index: 2;
+}
+
+.yt-icon {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Falling animation */
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) translateX(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  70% {
+    opacity: 0.8;
+    transform: translateY(calc(var(--fall-distance) * 0.7)) translateX(var(--drift)) rotate(var(--rotation)) scale(1);
+  }
+  100% {
+    transform: translateY(var(--fall-distance)) translateX(0) rotate(720deg) scale(0.2);
+    opacity: 0;
+  }
+}
+
+.yt-icon.falling {
+  animation: fall var(--duration) ease-in forwards;
+}
+
+/* Sparkles Container */
+.sparkles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .sparkles-container {
+  opacity: 1;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 24px;
+  opacity: 0;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Sparkle flash animation */
+@keyframes sparkleFlash {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 1;
+  }
+  40% {
+    transform: scale(0.8) rotate(360deg);
+    opacity: 0.8;
+  }
+  60% {
+    transform: scale(1) rotate(540deg);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.9) rotate(720deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(0) rotate(900deg);
+    opacity: 0;
+  }
+}
+
+.sparkle.flashing {
+  animation: sparkleFlash var(--sparkle-duration) ease-in-out forwards;
+}
+
+/* Typing Animation Container */
+.typing-animation-container {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 400px;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .typing-animation-container {
+  opacity: 1;
+}
+
+.typing-input {
+  background: var(--color-surface-container-highest);
+  border: 2px solid var(--color-outline);
+  border-radius: 12px;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-height: 48px;
+}
+
+.typing-text {
+  font-size: 14px;
+  color: var(--color-on-surface);
+  font-weight: 500;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.typing-cursor {
+  font-size: 14px;
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* Folder Generator Animation */
+.folder-generator {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.feature-card:hover .folder-generator {
+  opacity: 1;
+}
+
+.folder-animation {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: var(--color-primary-container);
+  border: 2px solid var(--color-primary);
+  border-radius: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(0);
+  opacity: 0;
+}
+
+.folder-animation.show {
+  animation: folderPop 2s ease-out forwards;
+}
+
+.folder-icon {
+  font-size: 24px;
+  color: var(--color-primary);
+}
+
+.folder-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-on-primary-container);
+  white-space: nowrap;
+}
+
+@keyframes folderPop {
+  0% {
+    transform: scale(0) translateY(20px);
+    opacity: 0;
+  }
+  15% {
+    transform: scale(1.2) translateY(0);
+    opacity: 1;
+  }
+  25% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  85% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8) translateY(-10px);
+    opacity: 0;
+  }
+}
+
+.feature-card h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-on-surface);
+  line-height: 1.4;
+}
+
+.feature-card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-on-surface-variant);
+}
+
+/* Card Content Centered (for cards without images) */
+.card-content-centered {
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 32px !important;
+}
+
+/* Horizontal Card Layout */
+.feature-card-horizontal {
+  flex-direction: row;
+}
+
+.feature-card-horizontal .card-image-container {
+  width: 40%;
+  height: auto;
+  min-height: 300px;
+  flex-shrink: 0;
+}
+
+.feature-card-horizontal .card-content-horizontal {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px !important;
+}
+
+.card-image-left {
+  border-radius: 14px 0 0 14px;
+}
+
+.card-image-left .card-header-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 1 !important;
+  transition: none;
+}
+
+/* Ensure GIF stays visible on hover */
+.feature-card-horizontal:hover .card-image-left .card-header-image {
+  opacity: 1 !important;
+}
+
+/* Coming Soon Badge */
+.coming-soon-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 10px 20px;
+  background: var(--color-tertiary-container);
+  color: var(--color-on-tertiary-container);
+  border-radius: 24px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.coming-soon-badge .material-symbols-outlined {
+  font-size: 20px;
+}
+
+/* Disabled state for future features */
+.feature-card-disabled {
+  opacity: 0.75;
+  cursor: default;
+  grid-column: 1 / -1; /* Span across all columns */
+}
+
+.feature-card-disabled:hover {
+  border-color: var(--color-outline-variant);
+  transform: none;
+  box-shadow: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body {
+    min-width: 100%;
+  }
+
+  .container {
+    padding: 16px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-image-container {
+    height: 150px;
+  }
+  
+  .card-content {
+    padding: 20px;
+  }
+}
+
+

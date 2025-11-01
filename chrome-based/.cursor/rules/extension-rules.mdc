@@ -1,0 +1,216 @@
+---
+alwaysApply: false
+---
+
+## QEFY Chrome Extension – Architecture and Goals
+
+### Project Goals
+- This chrome extension is responsible for executing auto-play of videos from user's media queue.
+- Users can select folders/playlists and play content with full media controls.
+- The app operates in multiple contexts with seamless integration.
+- **Popup Interface**: Users can login, logout, control current media session (play/pause, speed, seek), select folders, add videos, and manage queues.
+- **Tab Hijacking**: Once playback starts, the app hijacks a browser tab and ALWAYS reuses the same tab for continuous playback.
+- **Floating UI**: In hijacked tabs, displays a floating control panel with media details, controls, and upnext preview.
+- **Auto-Navigation**: When media ends, automatically pauses and redirects to the next video in the selected folder.
+- **Queue Management**: Full offline-first queue management with real-time sync across devices.
+- **Video Addition**: Easy video addition through URL input, clipboard paste, or current tab capture.
+
+### Current Architecture (MV3)
+- **Service Worker**: `background.js`
+  - Coordinates lifecycle, offscreen document, and state management.
+  - Switches action popup between `login.html` (signed out) and `popup.html` (signed in).
+  - Caches `authState` and `latestCompiledQueue` and relays events to UI.
+  - Manages tab hijacking and floating UI injection.
+  - Handles message routing between popup, offscreen, and content scripts.
+
+- **Offscreen Document**: `offscreen.html` + `offscreen.js`
+  - Runs persistent DOM context required by Core App (Dart compiled JS) and Firebase.
+  - Loads Core App JS from `vendor/core_app/main.dart.js` and registers JS interop bindings.
+  - Initializes Firebase (compat SDK vendored locally) and attaches Firestore listener to `queue/{uid}`.
+  - Normalizes Firestore documents and forwards them to Core App via `updateQueue`.
+  - Emits compiled queue to background via message bus.
+  - Manages Firebase auth token refresh and Core App authentication.
+
+- **Popup UI** (signed-in view): `popup.html` + `popup.js`
+  - Displays auth state and compiled queue snapshot with real-time updates.
+  - **Media Controls**: Play/pause, seek, speed control, mark as done.
+  - **Folder Management**: Dropdown selection, "Play Now" functionality.
+  - **Video Addition**: URL input, clipboard paste, current tab capture.
+  - **Queue Management**: "Manage Queues" button for external queue management.
+  - **Header Playlist Selector**: Quick playlist switching with dropdown.
+  - **Upnext Preview**: Shows next 2 videos in queue with thumbnails.
+
+- **Floating UI/ Floating App** (content script): `tab_floating_ui.js` + `tab_floating_ui.css`
+  - Injected into hijacked tabs for media control overlay.
+  - **Media Information**: Current video title, thumbnail, progress.
+  - **Control Panel**: Play/pause, seek, speed, mark as done.
+  - **Upnext Display**: Next videos with click-to-navigate.
+  - **Playlist Selector**: Dropdown for switching playlists.
+  - **Queue Status**: Shows "queue ended" when playlist is exhausted.
+
+- **Login UI** (signed-out view): `login.html` + `login.js`
+  - Email/password form; submits credentials to background → offscreen for Firebase auth.
+  - Redirects to `popup.html` after successful sign-in.
+
+- **Shared Messaging Enum**: `messages.js`
+  - Central enum (`MessageType`) for all runtime messages to avoid string drift across modules.
+  - Includes message types for auth, queue updates, media control, and tab management.
+
+- **Configuration & Utils**
+  - `config.js`: Centralized constants (Cloud Functions base, Firestore collection names).
+  - `queue_normalizer.js`: Normalizes Firestore data (drops nulls, converts Timestamps to ISO strings).
+
+- **Manifest & CSP**
+  - `manifest.json` (MV3): background service worker, offscreen permission, action popup, clipboard access.
+  - Vendored Firebase compat scripts under `vendor/firebase/` to satisfy MV3 CSP.
+  - Core App bundle under `vendor/core_app/main.dart.js` (built from `core_app`).
+
+### Data & Control Flow
+1) **Authentication**: User signs in from `login.html` → `MessageType.POPUP_SIGN_IN` → offscreen Firebase auth → `MessageType.AUTH_STATE`.
+2) **Queue Sync**: Offscreen listens to `queue/{uid}` in Firestore, normalizes data, calls `updateQueue` on Core App.
+3) **Queue Compilation**: Core App compiles queue with pending actions, emits via `onQueueUpdated` → `MessageType.COMPILED_QUEUE_UPDATE`.
+4) **UI Updates**: Background broadcasts compiled queue to popup and floating UI for real-time rendering.
+5) **Media Control**: User actions (play/pause, seek, speed) → background → offscreen → Core App → sync to backend.
+6) **Video Addition**: URL input → validation → `SEND_ACTION_TO_CORE` (ADD action) → Core App → sync.
+7) **Tab Management**: "Play Now" → hijack tab → inject floating UI → maintain hijacked state for navigation.
+8) **Auto-Navigation**: Media end detection → move to done → navigate to next video → maintain hijacked state.
+
+### Core App Integration
+- **Core App** (pure Dart) compiled to JS (`main.dart.js`) runs inside the offscreen document.
+- **JS Bindings** exposed by Core App:
+  - `setApiBaseUrl(url)`, `setBearerToken(token)`, `updateQueue(json)`, `onQueueUpdated(callback)`.
+  - `newAction(actionJson)` for sending actions (ADD, RMV, MV, etc.).
+- **API Base**: Default to `https://us-central1-qefy-playlist.cloudfunctions.net` (overridable).
+- **Action Deduplication**: Core App prevents duplicate actions (ADD, MV, FRNM) based on content matching.
+- **Offline-First**: All actions are stored locally and synced when online.
+
+### Key Features Implemented
+- **Real-Time Sync**: Firebase auth token refresh and queue updates in real-time.
+- **Tab Hijacking**: Persistent tab management with floating UI injection.
+- **Media Controls**: Full playback control (play/pause, seek, speed, mark as done).
+- **Queue Management**: Add videos, manage playlists, view upnext.
+- **Auto-Navigation**: Seamless video transitions with state preservation.
+- **Clipboard Integration**: Paste URLs directly from clipboard.
+- **URL Validation**: Input validation for video URLs.
+- **Playlist Selectors**: Quick playlist switching in both popup and floating UI.
+- **Queue Status**: Visual indicators for queue end and playlist completion.
+
+### Development Patterns
+- **Message Passing**: All communication between components uses `MessageType` enum.
+- **State Management**: Centralized state in background script with real-time broadcasting.
+- **Error Handling**: Graceful degradation with user feedback for failed operations.
+- **Event Deduplication**: Protection against duplicate actions and event listeners.
+- **UI Consistency**: Matching styles and behavior between popup and floating UI.
+
+### Notes
+- **Offline-First**: Core App handles action reconciliation; extension manages auth and queue fetching.
+- **Firestore Path**: `queue/{uid}` for user queue data.
+- **Tab Persistence**: Always reuse hijacked tab ID for session continuity.
+- **Permission Requirements**: `clipboardRead` permission for paste functionality.
+- **CSP Compliance**: All external scripts vendored locally for MV3 compatibility.
+## QEFY Chrome Extension – Architecture and Goals
+
+### Project Goals
+- This chrome extension is responsible for executing auto-play of videos from user's media queue.
+- Users can select folders/playlists and play content with full media controls.
+- The app operates in multiple contexts with seamless integration.
+- **Popup Interface**: Users can login, logout, control current media session (play/pause, speed, seek), select folders, add videos, and manage queues.
+- **Tab Hijacking**: Once playback starts, the app hijacks a browser tab and ALWAYS reuses the same tab for continuous playback.
+- **Floating UI**: In hijacked tabs, displays a floating control panel with media details, controls, and upnext preview.
+- **Auto-Navigation**: When media ends, automatically pauses and redirects to the next video in the selected folder.
+- **Queue Management**: Full offline-first queue management with real-time sync across devices.
+- **Video Addition**: Easy video addition through URL input, clipboard paste, or current tab capture.
+
+### Current Architecture (MV3)
+- **Service Worker**: `background.js`
+  - Coordinates lifecycle, offscreen document, and state management.
+  - Switches action popup between `login.html` (signed out) and `popup.html` (signed in).
+  - Caches `authState` and `latestCompiledQueue` and relays events to UI.
+  - Manages tab hijacking and floating UI injection.
+  - Handles message routing between popup, offscreen, and content scripts.
+
+- **Offscreen Document**: `offscreen.html` + `offscreen.js`
+  - Runs persistent DOM context required by Core App (Dart compiled JS) and Firebase.
+  - Loads Core App JS from `vendor/core_app/main.dart.js` and registers JS interop bindings.
+  - Initializes Firebase (compat SDK vendored locally) and attaches Firestore listener to `queue/{uid}`.
+  - Normalizes Firestore documents and forwards them to Core App via `updateQueue`.
+  - Emits compiled queue to background via message bus.
+  - Manages Firebase auth token refresh and Core App authentication.
+
+- **Popup UI** (signed-in view): `popup.html` + `popup.js`
+  - Displays auth state and compiled queue snapshot with real-time updates.
+  - **Media Controls**: Play/pause, seek, speed control, mark as done.
+  - **Folder Management**: Dropdown selection, "Play Now" functionality.
+  - **Video Addition**: URL input, clipboard paste, current tab capture.
+  - **Queue Management**: "Manage Queues" button for external queue management.
+  - **Header Playlist Selector**: Quick playlist switching with dropdown.
+  - **Upnext Preview**: Shows next 2 videos in queue with thumbnails.
+
+- **Floating UI/ Floating App** (content script): `tab_floating_ui.js` + `tab_floating_ui.css`
+  - Injected into hijacked tabs for media control overlay.
+  - **Media Information**: Current video title, thumbnail, progress.
+  - **Control Panel**: Play/pause, seek, speed, mark as done.
+  - **Upnext Display**: Next videos with click-to-navigate.
+  - **Playlist Selector**: Dropdown for switching playlists.
+  - **Queue Status**: Shows "queue ended" when playlist is exhausted.
+
+- **Login UI** (signed-out view): `login.html` + `login.js`
+  - Email/password form; submits credentials to background → offscreen for Firebase auth.
+  - Redirects to `popup.html` after successful sign-in.
+
+- **Shared Messaging Enum**: `messages.js`
+  - Central enum (`MessageType`) for all runtime messages to avoid string drift across modules.
+  - Includes message types for auth, queue updates, media control, and tab management.
+
+- **Configuration & Utils**
+  - `config.js`: Centralized constants (Cloud Functions base, Firestore collection names).
+  - `queue_normalizer.js`: Normalizes Firestore data (drops nulls, converts Timestamps to ISO strings).
+
+- **Manifest & CSP**
+  - `manifest.json` (MV3): background service worker, offscreen permission, action popup, clipboard access.
+  - Vendored Firebase compat scripts under `vendor/firebase/` to satisfy MV3 CSP.
+  - Core App bundle under `vendor/core_app/main.dart.js` (built from `core_app`).
+
+### Data & Control Flow
+1) **Authentication**: User signs in from `login.html` → `MessageType.POPUP_SIGN_IN` → offscreen Firebase auth → `MessageType.AUTH_STATE`.
+2) **Queue Sync**: Offscreen listens to `queue/{uid}` in Firestore, normalizes data, calls `updateQueue` on Core App.
+3) **Queue Compilation**: Core App compiles queue with pending actions, emits via `onQueueUpdated` → `MessageType.COMPILED_QUEUE_UPDATE`.
+4) **UI Updates**: Background broadcasts compiled queue to popup and floating UI for real-time rendering.
+5) **Media Control**: User actions (play/pause, seek, speed) → background → offscreen → Core App → sync to backend.
+6) **Video Addition**: URL input → validation → `SEND_ACTION_TO_CORE` (ADD action) → Core App → sync.
+7) **Tab Management**: "Play Now" → hijack tab → inject floating UI → maintain hijacked state for navigation.
+8) **Auto-Navigation**: Media end detection → move to done → navigate to next video → maintain hijacked state.
+
+### Core App Integration
+- **Core App** (pure Dart) compiled to JS (`main.dart.js`) runs inside the offscreen document.
+- **JS Bindings** exposed by Core App:
+  - `setApiBaseUrl(url)`, `setBearerToken(token)`, `updateQueue(json)`, `onQueueUpdated(callback)`.
+  - `newAction(actionJson)` for sending actions (ADD, RMV, MV, etc.).
+- **API Base**: Default to `https://us-central1-qefy-playlist.cloudfunctions.net` (overridable).
+- **Action Deduplication**: Core App prevents duplicate actions (ADD, MV, FRNM) based on content matching.
+- **Offline-First**: All actions are stored locally and synced when online.
+
+### Key Features Implemented
+- **Real-Time Sync**: Firebase auth token refresh and queue updates in real-time.
+- **Tab Hijacking**: Persistent tab management with floating UI injection.
+- **Media Controls**: Full playback control (play/pause, seek, speed, mark as done).
+- **Queue Management**: Add videos, manage playlists, view upnext.
+- **Auto-Navigation**: Seamless video transitions with state preservation.
+- **Clipboard Integration**: Paste URLs directly from clipboard.
+- **URL Validation**: Input validation for video URLs.
+- **Playlist Selectors**: Quick playlist switching in both popup and floating UI.
+- **Queue Status**: Visual indicators for queue end and playlist completion.
+
+### Development Patterns
+- **Message Passing**: All communication between components uses `MessageType` enum.
+- **State Management**: Centralized state in background script with real-time broadcasting.
+- **Error Handling**: Graceful degradation with user feedback for failed operations.
+- **Event Deduplication**: Protection against duplicate actions and event listeners.
+- **UI Consistency**: Matching styles and behavior between popup and floating UI.
+
+### Notes
+- **Offline-First**: Core App handles action reconciliation; extension manages auth and queue fetching.
+- **Firestore Path**: `queue/{uid}` for user queue data.
+- **Tab Persistence**: Always reuse hijacked tab ID for session continuity.
+- **Permission Requirements**: `clipboardRead` permission for paste functionality.
+- **CSP Compliance**: All external scripts vendored locally for MV3 compatibility.

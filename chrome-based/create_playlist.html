@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title data-i18n-title="createPlaylistPageTitle">QEFY - Create Custom Playlist</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="tailwind_cdn_4.js"></script>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="material-icons.css" />
+    <link rel="stylesheet" href="create_playlist.css" />
+    <script src="i18n.js"></script>
+    <script src="ai-playlist-creator.js"></script>
+  </head>
+  <body class="bg-surface text-on-surface">
+    <div class="container">
+      <div class="header">
+        <div class="header-content">
+          <h1 data-i18n="createPlaylistTitle">Create custom playlists</h1>
+          <p class="description" data-i18n="createPlaylistDescription">
+            Based on my videos on queuefy and the prompt I created a new playlist. Eg: I created a playlist for me to watch during my 50-minute lunch, I want trivia videos
+          </p>
+        </div>
+        <button id="closeBtn" class="close-button w-10 h-10 rounded-full flex items-center justify-center header-action-btn cursor-pointer" data-i18n="close" title="Close">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <!-- Input Section -->
+      <div class="input-section" id="inputSection">
+        <label for="promptInput" class="input-label" data-i18n="enterPrompt">Enter your playlist idea...</label>
+        <textarea 
+          id="promptInput" 
+          class="prompt-input" 
+          rows="4"
+          data-i18n-placeholder="promptPlaceholder"
+          placeholder="Example: Create a playlist for my 50-minute lunch break with trivia videos"
+        ></textarea>
+        <button id="generateBtn" class="btn btn-primary" data-i18n="generatePlaylist">Generate Playlist</button>
+      </div>
+
+      <!-- Progress Section -->
+      <div class="progress-section" id="progressSection" style="display: none;">
+        <div class="progress-spinner"></div>
+        <p class="progress-text" data-i18n="generatingPlaylist">Analyzing your videos with AI...</p>
+        <div class="batch-progress" id="batchProgress" style="display: none;">
+          <div class="batch-stats">
+            <span class="batch-count" id="batchCount">0/0</span>
+            <span class="batch-status" id="batchStatus" data-i18n="batchesProcessing">batches processing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Results Section -->
+      <div class="results-section" id="resultsSection" style="display: none;">
+        <div class="folder-name-section">
+          <label for="folderNameInput" class="folder-name-label" data-i18n="suggestedFolderName">Folder name:</label>
+          <input type="text" id="folderNameInput" class="folder-name-input" maxlength="50" />
+        </div>
+
+        <h2 class="videos-title"><span data-i18n="selectedVideos">Selected videos</span> (<span id="videoCount">0</span>)</h2>
+        
+        <div class="videos-list" id="videosList">
+          <!-- Videos will be dynamically added here -->
+        </div>
+
+        <div class="results-actions">
+          <button id="createFolderBtn" class="btn btn-primary" data-i18n="createFolderButton">Create folder on QEFY</button>
+          <button id="backBtn" class="btn btn-secondary" data-i18n="cancel">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Sync Status -->
+      <div class="sync-status" id="syncStatus" style="display: none;">
+        <div class="sync-spinner"></div>
+        <span data-i18n="waitingForSync">Creating your playlist...</span>
+      </div>
+
+      <!-- Success Message -->
+      <div class="success-message" id="successMessage" style="display: none;">
+        <div class="success-icon">✓</div>
+        <h2 data-i18n="playlistCreatedTitle">Playlist Created!</h2>
+        <p data-i18n="playlistCreatedDescription">Your custom playlist has been added to QEFY.</p>
+        <button id="closeSuccessBtn" class="btn btn-primary" data-i18n="closeThisTab">Close this tab</button>
+      </div>
+    </div>
+
+    <script type="module" src="create_playlist.js"></script>
+  </body>
+</html>
+

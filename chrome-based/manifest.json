@@ -1,0 +1,78 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "description": "__MSG_appDescription__",
+  "version": "0.1.0",
+  "default_locale": "en",
+  "minimum_chrome_version": "109",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "QEFY",
+    "default_popup": "login.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "permissions": [
+    "storage",
+    "offscreen",
+    "tabs",
+    "scripting",
+    "activeTab",
+    "notifications",
+    "clipboardRead"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "https://*.gstatic.com/*",
+    "https://*.googleapis.com/*",
+    "https://*.firebaseio.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["ai-folder-suggestion.js", "ai-simple-batch.js", "ai-notification-wrapper.js", "youtube_content.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": [
+        "https://qefy-playlist.web.app/*",
+        "https://localhost:8080/*",
+        "http://localhost:8080/*"
+      ],
+      "js": ["qefy_web_content.js"],
+      "run_at": "document_end"
+    }
+  ],
+  
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "vendor/core_app/main.dart.js",
+        "icons/*.png",
+        "material-icons.css",
+        "base.css",
+        "tab_floating_ui.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
+

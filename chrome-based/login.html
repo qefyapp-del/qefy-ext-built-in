@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title data-i18n-title="loginTitle">QEFY Login</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="material-icons.css" />
+    <link rel="stylesheet" href="popup.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="i18n.js"></script>
+    <style>
+      html, body {
+        margin: 0;
+        padding: 0;
+        width: 520px;
+        min-width: 520px;
+        background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-container) 100%);
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      }
+      
+      #app {
+        width: 100%;
+        max-width: 520px;
+        min-width: 520px;
+        padding: 24px;
+        box-sizing: border-box;
+      }
+      
+      .login-container {
+        background: var(--color-surface);
+        border-radius: 16px;
+        padding: 32px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--color-outline-variant);
+      }
+      
+      .login-header {
+        text-align: center;
+        margin-bottom: 32px;
+      }
+      
+      .login-header h1 {
+        color: var(--color-primary);
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+      }
+      
+      .login-subtitle {
+        color: var(--color-on-surface-variant);
+        font-size: 14px;
+        margin: 0;
+      }
+      
+      .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+      
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      
+      .form-group label {
+        color: var(--color-on-surface);
+        font-size: 14px;
+        font-weight: 500;
+      }
+      
+      .form-group input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 2px solid var(--color-outline-variant);
+        border-radius: 8px;
+        font-size: 14px;
+        background: var(--color-surface-container-lowest);
+        color: var(--color-on-surface);
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+      }
+      
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--color-primary);
+        background: var(--color-surface);
+      }
+      
+      .form-group input::placeholder {
+        color: var(--color-on-surface-variant);
+        opacity: 0.6;
+      }
+      
+      .login-button {
+        width: 100%;
+        padding: 14px 24px;
+        background: var(--color-primary);
+        color: var(--color-on-primary);
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-top: 8px;
+      }
+      
+      .login-button:hover {
+        background: var(--color-primary-fixed);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(144, 75, 64, 0.3);
+      }
+      
+      .login-button:active {
+        transform: translateY(0);
+      }
+      
+      .login-button:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+      
+      #msg {
+        margin-top: 16px;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 13px;
+        background: var(--color-error-container);
+        color: var(--color-on-error-container);
+        border: 1px solid var(--color-error);
+      }
+      
+      #msg.success {
+        background: var(--color-tertiary-container);
+        color: var(--color-on-tertiary-container);
+        border-color: var(--color-tertiary);
+      }
+      
+      #msg:empty {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="login-container">
+        <div class="login-header">
+          <h1 data-i18n="loginTitle">QEFY – Login</h1>
+          <p class="login-subtitle" data-i18n="loginSubtitle">Welcome back! Please sign in to continue</p>
+        </div>
+        <form id="loginForm" class="login-form">
+          <div class="form-group">
+            <label for="emailInput" data-i18n="emailLabel">Email</label>
+            <input id="emailInput" type="email" data-i18n-placeholder="email" placeholder="Email" autocomplete="username" required />
+          </div>
+          <div class="form-group">
+            <label for="passwordInput" data-i18n="passwordLabel">Password</label>
+            <input id="passwordInput" type="password" data-i18n-placeholder="password" placeholder="Password" autocomplete="current-password" required />
+          </div>
+          <button id="submitLoginBtn" type="submit" class="login-button" data-i18n="signIn">Sign In</button>
+        </form>
+        <pre id="msg"></pre>
+      </div>
+    </div>
+    <script>
+      // Force popup width on load (Chrome extension popups need explicit width)
+      (function() {
+        function enforceWidth() {
+          document.documentElement.style.width = '520px';
+          document.documentElement.style.minWidth = '520px';
+          document.body.style.width = '520px';
+          document.body.style.minWidth = '520px';
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', enforceWidth);
+        } else {
+          enforceWidth();
+        }
+      })();
+    </script>
+    <script type="module" src="login.js"></script>
+  </body>
+  </html>
+
+

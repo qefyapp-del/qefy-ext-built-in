@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title data-i18n-title="cleanupPageTitle">QEFY - Clean up my mess</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="tailwind_cdn_4.js"></script>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="material-icons.css" />
+    <link rel="stylesheet" href="cleanup.css" />
+    <script src="i18n.js"></script>
+    <script src="ai-folder-suggestion.js"></script>
+  </head>
+  <body class="bg-surface text-on-surface">
+    <div class="container">
+ 
+      <div class="header">
+        <div class="header-content">
+          <h1>✨ <span data-i18n="cleanupTitle">Clean up my mess</span></h1>
+          <p class="description" data-i18n="cleanupDescription">
+            This scans all your open YouTube tabs and automatically sorts the best folder in Qefy to save your video. We won't close any tabs without your confirmation.
+          </p>
+        </div>
+        <button id="closeBtn" class="close-button w-10 h-10 rounded-full flex items-center justify-center header-action-btn cursor-pointer" data-i18n="close" title="Close">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="progress-section" id="progressSection">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">
+          <span data-i18n="scanningTabs">Scanning YouTube tabs...</span>
+        </div>
+        <button id="stopAI" class="btn btn-warning" style="display: none;" data-i18n="stopAI">
+          Stop AI, I'll manually choose
+        </button>
+      </div>
+
+      <div class="items-container" id="itemsContainer">
+        <!-- Items will be dynamically populated here -->
+      </div>
+
+      <div class="actions" id="actions" style="display: none;">
+        <div class="action-info" id="actionInfo">
+          <span id="successCount">0</span> <span data-i18n="videosReady">videos ready to save</span>
+          <span class="separator">•</span>
+          <span id="errorCount">0</span> <span data-i18n="videosFailed">skipped</span>
+        </div>
+        <div class="action-buttons">
+          <button id="saveAndCloseTabs" class="btn btn-primary" data-i18n="saveAndCloseTabs">
+            Save to Qefy and close tabs
+          </button>
+          <button id="saveKeepTabs" class="btn btn-secondary" data-i18n="saveKeepTabs">
+            Save to Qefy but keep tabs open
+          </button>
+          <button id="cancel" class="btn btn-tertiary" data-i18n="cancel">
+            Cancel
+          </button>
+        </div>
+      </div>
+
+      <div class="sync-status" id="syncStatus" style="display: none;">
+        <div class="sync-spinner"></div>
+        <span data-i18n="waitingForSync">Waiting for sync confirmation...</span>
+      </div>
+
+      <div class="success-message" id="successMessage" style="display: none;">
+        <div class="success-icon">✓</div>
+        <h2 data-i18n="successTitle">Successfully saved to Qefy!</h2>
+        <p data-i18n="successDescription">Your videos have been organized into their folders.</p>
+        <button id="closeTab" class="btn btn-primary" data-i18n="closeThisTab">Close this tab</button>
+      </div>
+    </div>
+    
+    <script type="module" src="cleanup.js"></script>
+  </body>
+</html>
+

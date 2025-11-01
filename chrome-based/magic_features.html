@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title data-i18n-title="magicFeaturesTitle">QEFY - Magic Features</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="tailwind_cdn_4.js"></script>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="material-icons.css" />
+    <link rel="stylesheet" href="magic_features.css" />
+    <script src="i18n.js"></script>
+  </head>
+  <body class="bg-surface text-on-surface">
+    <div class="container">
+      <div class="header">
+        <h1 data-i18n="magicFeaturesTitle">Magic features</h1>
+        <button id="closeBtn" class="close-button w-10 h-10 rounded-full flex items-center justify-center header-action-btn cursor-pointer" data-i18n="close" title="Close">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <div class="features-grid">
+        <!-- Feature 1: Clean up all my youtube tabs -->
+        <div class="feature-card" id="cleanupTabsCard">
+          <div class="card-image-container">
+            <div class="messy-tabs-preview">
+              <img src="assets/messy_tabs.png" alt="Messy YouTube Tabs" class="messy-tabs-image" />
+            </div>
+            <div class="yt-icons-container"></div>
+            <div class="sparkles-container"></div>
+            <div class="folder-generator">
+              <div class="folder-animation">
+                <span class="material-symbols-outlined folder-icon">folder</span>
+                <span class="folder-name"></span>
+              </div>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 data-i18n="cleanupTabsTitle">Clean up all my youtube tabs</h2>
+            <p data-i18n="cleanupTabsDescription">
+              Takes all your messy YouTube tabs in Chrome and uses AI to find the best folder on QEFY. 
+              Don't worry, we will do the work first and only after your confirmation will we close your tabs
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 2: Create custom playlists -->
+        <div class="feature-card" id="createPlaylistCard">
+          <div class="card-image-container">
+            <img src="assets/qefyai.png" alt="QEFY AI" class="card-header-image" />
+            <div class="typing-animation-container">
+              <div class="typing-input">
+                <span class="typing-text"></span>
+                <span class="typing-cursor">|</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-content">
+            <h2 data-i18n="createPlaylistTitle">Create custom playlists</h2>
+            <p data-i18n="createPlaylistDescription">
+              Based on my videos on queuefy and the prompt I created a new playlist. Eg: I created a playlist for me to watch during my 50-minute lunch, I want trivia videos
+            </p>
+          </div>
+        </div>
+
+        <!-- Feature 3: Save directly from youtube -->
+        <div class="feature-card feature-card-disabled feature-card-horizontal" id="saveFromYoutubeCard">
+          <div class="card-image-container card-image-left">
+            <img src="assets/ytthumb.gif" alt="YouTube Thumbnail Preview" class="card-header-image" />
+          </div>
+          <div class="card-content card-content-horizontal">
+            <h2>Save directly from youtube</h2>
+            <p>
+              Qefy Adds an icon on all your youtube videos, you can quickly add a videos to one folder or let AI choose the folder. The AI will read video attributes like thumb, title, duration. And find the best folder for yournew video
+            </p>
+            <div class="coming-soon-badge">
+              <span class="material-symbols-outlined">schedule</span>
+              <span>Coming Soon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="magic_features.js"></script>
+  </body>
+</html>
+
