@@ -16,7 +16,12 @@ https://googlechromeai2025.devpost.com/
 ## Instructions
 - Install the exntension mannualy accessing chrome://extensions/ and "Load Unpacked"
 - activate the ai flag and have the model downloaded in Chrome.
-- After that login with
+- You can create a new account, but for the judge I already setup a new account with a lot of content, I added the login and pass to the devpost notes ( visible only for judges)
+- Tap on the extension icon on chrome.
+- Login
+- Now you can open youtube and test the quick actions button.
+- Also you can open the extension popup and click on the magic button and try "Clean my tabs" and "Create custom playlist" with AI.
+- You can use the same login to access your video here https://qefy-playlist.web.app/ - or also clicking on manage my queue on the extension poup. 
 
 ## Inspiration
 I'm working on my first project as an indie developer for publication. I was almost finished, but I discovered the challenge of Chrome's built-in and decided to add AI features to my project.
