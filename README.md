@@ -1,3 +1,5 @@
+⚠️This project is not 100% ready for public use, and it is open for participation in the Chrome challenge.
+
 # qefy-ext-built-in
 Queuefy is a smart bookmarking app for video and audio content, letting users save, organize, and play YouTube videos, podcasts, and more in seamless playlists. With a browser extension and mobile app, Queuefy makes it easy to queue up content from multiple platforms and enjoy it distraction-free, anytime.
 
